@@ -17,25 +17,23 @@ default_run_options[:pty] = true
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-  task :start do
-    run "cd #{release_path} && passenger start -p80 -d"
+  task :start, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && passenger start -p80 -d"
   end
-  task :stop do
-    run "cd #{release_path} && passenger stop -p80"
+  task :stop, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && passenger stop --pid-file tmp/pids/passenger.pid"
   end
-  task :restart, :roles => :app do
-    deploy.stop
-    deploy.start
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
   end
 end
 
 namespace :bundler do
-  desc "Install for production"
   task :install, :roles => :app do
     run "cd #{release_path} && bundle install --binstubs --without=development test"
   end
 end
 
-before 'deploy:update_code', 'deploy:stop'
+#before 'deploy:update_code', 'deploy:stop'
 after 'deploy:update_code', 'bundler:install'
 
