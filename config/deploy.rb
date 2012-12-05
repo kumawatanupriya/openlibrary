@@ -1,5 +1,5 @@
 set :application, "openlibrary"
-set :repository,  "git@github.com:TWChennai/openlibrary.git"
+set :repository,  "git://github.com/TWChennai/openlibrary.git"
 set :user, "deploy"
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
@@ -19,9 +19,6 @@ default_run_options[:pty] = true
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-  task :soft_link do
-    run 'ln -nfs /u/apps/openlibrary/shared/barcode_images barcode_images'
-  end
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
