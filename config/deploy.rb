@@ -18,10 +18,10 @@ default_run_options[:pty] = true
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
   task :start do
-    run 'cd #{release_path} && passenger start -p80 -d'
+    run "cd #{release_path} && passenger start -p80 -d"
   end
   task :stop do
-    run 'cd #{release_path} && passenger stop -p80'
+    run "cd #{release_path} && passenger stop -p80"
   end
   task :restart, :roles => :app do
     deploy.stop
