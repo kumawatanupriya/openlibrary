@@ -9,21 +9,11 @@ class Book
   has n, :book_copies
   has n, :reservation
 
-  def self.create_from_openlibrary(isbn)
+  def self.create_from_google_api(isbn)
     params = details_from_google(isbn) || {:isbn => isbn, :title => 'N/A', :author => 'N/A'}
     Book.new(params).tap do |b|
       b.book_copies << BookCopy.new
     end if params
-  end
-
-  def self.details_from_openlibrary(isbn)
-    details = ::Openlibrary::Data.find_by_isbn(isbn)
-    {}.tap do |p|
-      p[:isbn] = details.identifiers["isbn_13"] ? details.identifiers["isbn_13"][0] : isbn
-      p[:title] = details.title
-      p[:author] = details.authors.map { |a| a["name"] }.join(", ") if details.authors
-      p[:photo_remote_url] = details.cover["medium"] if details.cover
-    end if details
   end
 
   def self.details_from_google(isbn)

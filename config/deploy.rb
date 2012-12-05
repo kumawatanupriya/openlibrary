@@ -1,6 +1,6 @@
 set :application, "openlibrary"
 set :repository,  "git://github.com/TWChennai/openlibrary.git"
-set :user, "deploy"
+set :user, "root"
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`

@@ -111,7 +111,7 @@ def load_user
 end
 
 def load_book
-  @book = Book.first(:isbn => params[:isbn]) || Book.create_from_openlibrary(params[:isbn])
+  @book = Book.first(:isbn => params[:isbn]) || Book.create_from_google_api(params[:isbn])
 end
 
 def load_messages
