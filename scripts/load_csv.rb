@@ -10,11 +10,11 @@ def read_csv(csv_file)
   tickers
 end
 
-users = CSV.read(ARGV[0])
+users = read_csv(ARGV[0])
 
 if(ENV['MODEL'] == 'User')
-  users[1..-1].each do |user_params|
-    User.create(employee_id: user_params[1], first_name: user_params[2], last_name: user_params[3])
+  users.each do |user_params|
+    User.create(employee_id: user_params[:employee_id], first_name: user_params[:first_name], last_name: user_params[:last_name])
   end
 end
 
