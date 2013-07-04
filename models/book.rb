@@ -11,9 +11,9 @@ class Book
 
   def self.create_from_google_api(isbn, copies=1)
     params = details_from_google(isbn) || {:isbn => isbn, :title => 'N/A', :author => 'N/A'}
-    Book.new(params).tap do |b|
+    Book.create(params).tap do |b|
       copies.times{ b.book_copies << BookCopy.new }
-    end.save
+    end
   end
 
   def self.details_from_google(isbn)
