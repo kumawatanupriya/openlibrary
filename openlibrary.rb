@@ -107,7 +107,7 @@ def load_user_and_book
 end
 
 def load_user
-  @user = User.first(:employee_id => params[:employee_id])
+  @user = User.first(:employee_id => params[:employee_id].to_i)
 end
 
 def load_book

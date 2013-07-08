@@ -14,7 +14,7 @@ end
 if(ENV['MODEL'] == 'User')
   users = read_csv(ARGV[0])
   users.each do |user_params|
-    User.create(employee_id: user_params[:employee_id], first_name: user_params[:first_name], last_name: user_params[:last_name])
+    User.create(employee_id: user_params[:employee_id].to_i, first_name: user_params[:first_name], last_name: user_params[:last_name])
   end
 end
 
