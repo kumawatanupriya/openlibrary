@@ -60,7 +60,7 @@ get '/users/:employee_id/reserve/:isbn' do
   load_user_and_book
   load_messages
   not_found and return if @user.nil? || @book.nil?
-  criteria = {:user => @user, :book => @book, :state => :issued}
+  criteria = {:user => @user, :book => @book, :state => :issued.to_s}
   @reservation = get_reservation criteria
   @reservation.save
   send("send_#{@reservation.state}_msg")
