@@ -1,11 +1,11 @@
 set :application, "openlibrary"
-set :repository, "git://github.com/TWChennai/openlibrary.git"
+set :repository, "git://github.com/siliconsenthil/openlibrary.git"
 set :user, "root"
 
 set :scm, :git
-role :web, "10.10.4.50" # Your HTTP server, Apache/etc
-role :app, "10.10.4.50" # This may be the same as your `Web` server
-role :db, "10.10.4.50", :primary => true # This is where Rails migrations will run
+role :web, "10.10.5.121" # Your HTTP server, Apache/etc
+role :app, "10.10.5.121" # This may be the same as your `Web` server
+role :db, "10.10.5.121", :primary => true # This is where Rails migrations will run
 
 default_run_options[:pty] = true
 
