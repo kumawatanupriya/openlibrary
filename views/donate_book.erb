@@ -4,11 +4,12 @@
   <h3 class="title"><%= @book.title %></h3>
   <h3 class="author"><%= @book.author %></h3>
   <h3 class="author"><%= @book.author %></h3>
-  <p>
-    <% unless @reservation.nil? %>
-      <span><%= @reservation.user.full_name %></span> <%= @messages['user_review'] %>
-    <% else %>
-      <%= @messages && @messages['first_person'] %>
-    <% end %>
-  </p>
+  <% if @book_found %>
+    <p>
+      This book has <%= @book.book_copies.size %> copies.
+    </p>
+  <% else %>
+      A book copy of this book has been added.
+  <% end %>
 </div>
+

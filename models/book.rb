@@ -12,7 +12,7 @@ class Book
   def self.create_from_google_api(isbn, copies=1)
     params = details_from_google(isbn) || {:isbn => isbn, :title => 'N/A', :author => 'N/A'}
     Book.create(params).tap do |b|
-      copies.times{ b.book_copies << BookCopy.new }
+      copies.times{ b.book_copies << BookCopy.create(book_id: b.id) }
     end
   end
 
@@ -23,7 +23,7 @@ class Book
     {}.tap do |p|
       p[:isbn] = isbn
       p[:title] = response["title"]
-      p[:author] = response["authors"].join(", ")
+      p[:author] = response["authors"] ? response["authors"].join(", ") : 'N/A'
       p[:photo_remote_url] = response["imageLinks"]["thumbnail"] if response["imageLinks"]
     end
   end

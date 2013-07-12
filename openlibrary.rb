@@ -15,7 +15,7 @@ get '/' do
 end
 
 get '/issued-books' do
-  @reservations = Reservation.all({:state => :issued})
+  @reservations = Reservation.all({:state => :issued.to_s})
   with_base_layout :issued_books
 end
 
@@ -54,6 +54,12 @@ end
 
 get '/donate' do
   with_plain_layout :donate
+end
+
+post '/donate' do
+  @book_found = load_book
+  @book = Book.create_from_google_api(params[:isbn]) unless @book_found
+  without_layout(:donate_book)
 end
 
 get '/users/:employee_id/reserve/:isbn' do
@@ -111,7 +117,7 @@ def load_user
 end
 
 def load_book
-  @book = Book.first(:isbn => params[:isbn]) || Book.create_from_google_api(params[:isbn])
+  @book = Book.first(:isbn => params[:isbn])
 end
 
 def load_messages
