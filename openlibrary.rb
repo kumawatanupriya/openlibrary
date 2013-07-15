@@ -62,6 +62,12 @@ post '/donate' do
   without_layout(:donate_book)
 end
 
+post '/add_copies' do
+  @book_found = load_book
+  params[:copies_to_add].to_i.times{ @book.book_copies << BookCopy.create(book_id: @book.id) }
+  without_layout(:donate_book)
+end
+
 get '/users/:employee_id/reserve/:isbn' do
   load_user_and_book
   load_messages

@@ -4,16 +4,28 @@ var DonateBookView = Backbone.View.extend({
   },
 
   events: {
-    "change input.barcode": "saveBook"
+    "change input.barcode": "saveBook",
+    "click input[value=Add]": "addCopies"
   },
 
   saveBook: function(event){
-    $.post("/donate", {isbn: $(event.target).val()}, $.proxy(this.updateBookInfo, this))
+    $.blockUI();
+    var postReq = $.post("/donate", {isbn: $(event.target).val()}, $.proxy(this.updateBookInfo, this))
+    postReq.fail(function(){alert("error occurred")});
+    postReq.always(function(){$.unblockUI()});
+  },
+
+  addCopies: function(){
+    $.blockUI();
+    var params = {isbn: $("input[name=isbn]").val(), copies_to_add: $("input[type=number]").val()};
+    var postReq = $.post("/add_copies", params, $.proxy(this.updateBookInfo, this));
+    postReq.fail(function(){alert("error occurred")});
+    postReq.always(function(){$.unblockUI()});
   },
 
   updateBookInfo: function(responseText) {
-    console.log(responseText)
     $(this.el).find(".book-info").replaceWith(responseText);
+    $.unblockUI();
   } 
 });
 
