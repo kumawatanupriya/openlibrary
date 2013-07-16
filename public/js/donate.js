@@ -9,10 +9,7 @@ var DonateBookView = Backbone.View.extend({
   },
 
   saveBook: function(event){
-    $.blockUI();
     var postReq = $.post("/donate", {isbn: $(event.target).val()}, $.proxy(this.updateBookInfo, this))
-    postReq.fail(function(){alert("error occurred")});
-    postReq.always(function(){$.unblockUI()});
   },
 
   addCopies: function(){
