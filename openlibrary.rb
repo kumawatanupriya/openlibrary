@@ -34,6 +34,11 @@ get '/books/:isbn' do
   without_layout :book_info
 end
 
+get '/users' do
+  @users = User.all
+  with_plain_layout :users
+end
+
 get '/user/new' do
   with_plain_layout :new_user
 end

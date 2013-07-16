@@ -1,6 +1,9 @@
 home:
   path: "/"
   display_name: "Home"
+all_users:
+  path: "/users"
+  display_name: "Users"
 new_user:
   path: "/user/new"
   display_name: "New User"
