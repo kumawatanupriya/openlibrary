@@ -15,7 +15,7 @@
   text-align: center;
 }
 
-.page.container .hero-unit.section { height: 240px; padding: 40px 60px;}
+.page.container .hero-unit.section { height: 310px; padding: 40px 60px;}
 
 .page.container .input {
   padding: 10px 0px;
@@ -44,6 +44,8 @@
 .book-info p { padding-top: 10px;}
 
 .page.container .input .barcode {
+  line-height: 50px;
+  text-align: center;
   font-size: 40px;
   height: 40px;
   width: 290px;
