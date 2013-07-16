@@ -4,3 +4,9 @@ home:
 new_user:
   path: "/user/new"
   display_name: "New User"
+new_book:
+  path: "/donate"
+  display_name: "New Book"
+issued_books:
+  path: "/issued-books"
+  display_name: "Issued Books"

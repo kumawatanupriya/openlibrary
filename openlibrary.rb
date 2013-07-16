@@ -16,7 +16,7 @@ end
 
 get '/issued-books' do
   @reservations = Reservation.all({:state => :issued.to_s})
-  with_base_layout :issued_books
+  with_plain_layout :issued_books
 end
 
 get '/books/:isbn' do
@@ -29,7 +29,7 @@ get '/books/:isbn' do
 end
 
 get '/user/new' do
-  with_base_layout :new_user
+  with_plain_layout :new_user
 end
 
 get '/barcode/:employee_id/create' do
@@ -38,7 +38,7 @@ get '/barcode/:employee_id/create' do
 end
 
 get '/barcode/success' do
-  with_base_layout :barcode_success
+  with_plain_layout :barcode_success
 end
 
 post '/user/create' do
@@ -50,7 +50,6 @@ post '/user/create' do
   end
   redirect '/user/new'
 end
-
 
 get '/donate' do
   with_plain_layout :donate
@@ -79,12 +78,8 @@ get '/users/:employee_id/reserve/:isbn' do
   without_layout :reservation
 end
 
-def with_base_layout template, options={}
-  @menu_items = YAML::load(File.read(File.expand_path('config/menu.yml','.')))
-  erb template, options.merge(:layout => :'layout/base')
-end
-
 def with_plain_layout template, options={}
+  @menu_items = YAML::load(File.read(File.expand_path('config/menu.yml','.')))
   erb template, options.merge(:layout => :'layout/plain')
 end
 
