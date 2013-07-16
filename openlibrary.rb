@@ -19,6 +19,11 @@ get '/issued-books' do
   with_plain_layout :issued_books
 end
 
+get '/books' do
+  @books = Book.all
+  with_plain_layout :books
+end
+
 get '/books/:isbn' do
   content_type :json
   load_book

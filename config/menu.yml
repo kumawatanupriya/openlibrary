@@ -10,3 +10,6 @@ new_book:
 issued_books:
   path: "/issued-books"
   display_name: "Issued Books"
+all_books:
+  path: "/books"
+  display_name: "All Books"

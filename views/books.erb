@@ -1,0 +1,23 @@
+<% content_for :content do %>
+   <p><h3>Issued books</h3></p>
+   <table class="table table-hover">
+     <thead>
+     <tr>
+       <th>ISBN</th>
+       <th>Book Title</th>
+       <th>Book Author</th>
+       <th>Copies</th>
+     </tr>
+     </thead>
+     <tbody>
+     <% @books.each do |book| %>
+         <tr>
+           <td><%= book.isbn %></td>
+           <td><%= book.title %></td>
+           <td><%= book.author %></td>
+           <td><%= book.book_copies.size %></td>
+         </tr>
+     <% end %>
+     </tbody>
+   </table>
+<% end %>
