@@ -1,3 +1,6 @@
 $(document).ajaxSend(function(){$.blockUI();});
 $(document).ajaxStop(function(){$.unblockUI()});
-$(document).ajaxError(function(){alert("error occurred")});
+$(document).ajaxError(function(){
+  $.unblockUI();
+  window.alert("An error occurred...");
+});
