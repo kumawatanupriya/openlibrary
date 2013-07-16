@@ -7,6 +7,7 @@
        <th>Book Title</th>
        <th>Book Author</th>
        <th>Copies</th>
+       <th>Available</th>
      </tr>
      </thead>
      <tbody>
@@ -16,6 +17,7 @@
            <td><%= book.title %></td>
            <td><%= book.author %></td>
            <td><%= book.book_copies.size %></td>
+           <td><%= book.book_copies.size - @reservations.count{|r| r.book_id == book.id} %></td>
          </tr>
      <% end %>
      </tbody>

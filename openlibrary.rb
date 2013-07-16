@@ -21,6 +21,7 @@ end
 
 get '/books' do
   @books = Book.all
+  @reservations = Reservation.all(state: :issued.to_s).to_a
   with_plain_layout :books
 end
 
