@@ -4,9 +4,6 @@ home:
 all_users:
   path: "/users"
   display_name: "Users"
-new_user:
-  path: "/user/new"
-  display_name: "New User"
 new_book:
   path: "/donate"
   display_name: "New Book"

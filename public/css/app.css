@@ -114,3 +114,7 @@
 input[type=number]{
   width: 30px;
 }
+
+.bootstrap_buttons {
+  margin: 10px 0;
+}

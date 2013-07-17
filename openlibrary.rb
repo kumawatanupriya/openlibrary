@@ -35,12 +35,18 @@ get '/books/:isbn' do
 end
 
 get '/users' do
-  @users = User.all
+  @users = User.all(:order => [:id.desc])
   with_plain_layout :users
 end
 
-get '/user/new' do
-  with_plain_layout :new_user
+post '/user/create' do
+  user = User.create(params[:user].merge(employee_id: params[:user]["employee_id"].to_i))
+  if user.errors.empty?
+    flash[:success] = "Successfully created user !!!"
+  else
+    flash[:error] = user.errors.full_messages.join(", ")
+  end
+  redirect '/users'
 end
 
 get '/barcode/:employee_id/create' do
@@ -50,16 +56,6 @@ end
 
 get '/barcode/success' do
   with_plain_layout :barcode_success
-end
-
-post '/user/create' do
-  user = User.create(params[:user])
-  if user.errors.empty?
-    flash[:success] = "Successfully created user !!!"
-  else
-    flash[:error] = user.errors.full_messages.join(", ")
-  end
-  redirect '/user/new'
 end
 
 get '/donate' do
