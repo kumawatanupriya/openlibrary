@@ -34,6 +34,12 @@ get '/books/:isbn' do
   without_layout :book_info
 end
 
+post '/books/:isbn' do
+  @book = Book.first(isbn: params[:isbn])
+  @book.update(params[:book])
+  without_layout(:donate_book)
+end
+
 get '/users' do
   @users = User.all(:order => [:id.desc])
   with_plain_layout :users
