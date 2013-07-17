@@ -1,0 +1,34 @@
+Following are the steps we followed to get this installed in a Cent OS machine.
+
+Install packages
+================
+
+yum install git
+yum install mysql-server mysql
+yum install mysql-devel
+yum install curl-devel
+yum install pcre-devel
+
+
+Ruby setup
+==========
+
+rvm install (curl -L https://get.rvm.io | bash -s stable)
+ruby install with rvm ( rvm install ruby-2.0.0-p247 --verify-downloads 1)
+rvm gemset create ruby-2.0.0-p24@openlibrary
+gem install passenger
+
+Deploy
+======
+
+Now, add the IP to deploy script (config/deploy.rb)
+
+cap deploy
+
+NOTE: You might have to create following directories, if they don't exist
+mkdir -p  /u/apps/openlibrary/shared/pids
+mkdir /u/apps/openlibrary/shared/log
+
+cap deploy:start
+
+Hit the server ip. Open library should be running now :)
