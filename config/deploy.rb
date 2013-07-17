@@ -21,7 +21,7 @@ namespace :deploy do
     run "cd #{current_path} && passenger start -p80 -d"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && passenger stop --pid-file tmp/pids/passenger.pid"
+    run "cd #{current_path} && passenger stop --pid-file tmp/pids/passenger.80.pid"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
