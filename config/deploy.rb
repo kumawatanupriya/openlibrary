@@ -1,11 +1,17 @@
 set :application, "openlibrary"
 set :repository, "git://github.com/siliconsenthil/openlibrary.git"
 set :user, "root"
-
 set :scm, :git
-role :web, "10.10.5.121" # Your HTTP server, Apache/etc
-role :app, "10.10.5.121" # This may be the same as your `Web` server
-role :db, "10.10.5.121", :primary => true # This is where Rails migrations will run
+
+begin
+  server_ip = {chennai: "10.10.4.50", pune: "10.10.5.121"}.find{|o, ip| o.to_s.downcase == office.downcase}.last
+  role :web, server_ip # Your HTTP server, Apache/etc
+  role :app, server_ip# This may be the same as your `Web` server
+  role :db, server_ip, :primary => true # This is where Rails migrations will run
+rescue NameError
+  puts "Usage: cap -S office=<Chennai|Pune> <task>"
+  exit
+end
 
 default_run_options[:pty] = true
 
