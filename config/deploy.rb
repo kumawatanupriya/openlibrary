@@ -1,5 +1,5 @@
 set :application, "openlibrary"
-set :repository, "git://github.com/siliconsenthil/openlibrary.git"
+set :repository, "git://github.com/TWChennai/openlibrary.git"
 set :user, "root"
 set :scm, :git
 
