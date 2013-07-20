@@ -8,7 +8,7 @@
     <% unless @reservation.nil? %>
       <span><%= @reservation.user.full_name %></span> <%= @messages['user_review'] %>
     <% else %>
-      <%= @messages && @messages['first_person'] %>
+      <%= @messages['first_person'] %>
     <% end %>
   </p>
 </div>

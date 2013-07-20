@@ -40,6 +40,12 @@ post '/books/:isbn' do
   without_layout(:donate_book)
 end
 
+get '/users/:employee_id' do
+  load_user
+  not_found and return unless @user
+  without_layout :user_info
+end
+
 get '/users' do
   @users = User.all(:order => [:id.desc])
   with_plain_layout :users

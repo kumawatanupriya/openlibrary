@@ -8,8 +8,22 @@
   </div>
 
   <div class="reservation">
+    <div class="hero-unit section user" data-section-name="user" style="display:none">
+      <div class="instruction">
+        <h1>Tell me who you are</h1>
+        <p>
+         Hold your ID Card (with barcoded employee ID) in such a way that the scanner is able to read the barcode and recognize you.  
+        </p>
+      </div>
+      <div class="input">
+        <input type="text" class="barcode" maxlength="5" data-input-type="user" placeholder="Employee ID"/>
+      </div>
+      <div class="clear"></div>
+    </div>
 
     <div class="hero-unit section book" data-section-name="book">
+      <p class="user-info">
+      </p>
       <h1>Pick &amp; Scan</h1>
       <p>
        Hold the book in such a way that the scanner is able to read the ISBN behind the book.
@@ -19,37 +33,33 @@
       </div>
   	</div>
 
-    <div class="hero-unit section user" data-section-name="user" style="display:none">
-      <div class="instruction">
-        <h1>Tell me who you are</h1>
-        <p>
-         Hold your ID Card (with barcoded employee ID) in such a way that the scanner is able to read the barcode and recognize you.  
-        </p>
-      </div>
-      <div class="book-info">
-      </div>
-      <div class="input">
-        <input type="text" class="barcode" maxlength="5" data-input-type="user" placeholder="Employee ID"/>
-      </div>
-      <div class="clear"></div>
-    </div>
-
     <div class="hero-unit section confirmation" data-section-name="confirmation" style="display:none">
       <div class="wait">
         <div class="progress progress-striped active">
           <div class="bar" style="width: 100%;"></div>
         </div>
       </div>
+      <div class="confirmation-info">
+      </div>
       <h1>
         Thank you!
       </h1>
-      <p class="user-info">
-      </p>
     </div>
 
     <div class="row help">
       <div class="span12">
         <div class="row">
+          <div class="span4 notes user">
+            <div class="well">
+              <div class="title">
+                <div class="icon"></div>
+                <h2>Identify Yourself</h2>
+              </div>
+              <p>
+      	       Everyone is automatically entitled for Library access. Borrowing is free, but you must present your ID Card (with barcoded employee ID) to borrow books. 
+              </p>
+            </div>
+          </div>
 
           <div class="span4 notes book">
             <div class="well"> 
@@ -59,18 +69,6 @@
               </div>
               <p>
                If you see anything that looks appealing, pick it up and read the back of the book. Skim over the back of the book or the inside flap, wherever the summary is. If that holds your attention, then it's probably a good book for you. The subject might be interesting to you, but the writing style can be key to enjoying it. If it looks interesting, proceed to scanning the book.
-              </p>
-            </div>
-          </div>
-
-          <div class="span4 notes user">
-            <div class="well">
-              <div class="title">
-                <div class="icon"></div>
-                <h2>Identify Yourself</h2>
-              </div>
-              <p>
-      	       Everyone is automatically entitled for Library access. Borrowing is free, but you must present your ID Card (with barcoded employee ID) to borrow books. 
               </p>
             </div>
           </div>

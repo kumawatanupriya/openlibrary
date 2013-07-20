@@ -2,7 +2,7 @@ var isbnRegex = /^(\w{13}|\w{10})$/;
 var userRegex = /^\d{5}$/;
 var maxWaitTime = 5;
 var waitTime = 0;
-var highlightClassNames = {'book': ['active',null,null], 'user': ['done','active',null], 'confirmation': ['done', 'done', 'active']};
+var highlightClassNames = {'user': ['active',null,null], 'book': ['done','active',null], 'confirmation': ['done', 'done', 'active']};
 
 var Reservation = Backbone.Model.extend({
   errors: {
@@ -54,8 +54,8 @@ var ReservationView = Backbone.View.extend({
     this.confirmationEl = this._getElement(sections, "confirmation");
     this.model.on("read", $.proxy(this.reset, this));
     this.model.on("error", $.proxy(this.clearInput, this));
-    this.model.on("change:isbn", $.proxy(this.getBookDetails, this));
     this.model.on("change:user", $.proxy(this.getUserDetails, this));
+    this.model.on("change:isbn", $.proxy(this.reserveBook, this));
     this._alwaysFocusInput();
   },
   events: {
@@ -68,7 +68,7 @@ var ReservationView = Backbone.View.extend({
   reset: function() {
     this.model.set({isbn: null, user: null});
     $(this.el).find("input.barcode").val("");
-    this.promptBookDetails();
+    this.promptUserDetails();
     this._updateWaitTime(100);
     clearInterval(this.timerId);
     waitTime = 0;
@@ -77,13 +77,13 @@ var ReservationView = Backbone.View.extend({
     this.focus(this.bookEl);
     this._highlightHelp();
   },
-  getBookDetails: function(model, isbn) {
+  reserveBook: function(model, isbn) {
     if(!isbn) return;
-    url = '/books/'+isbn;
+    url = '/users/'+model.get('user')+'/reserve/'+isbn;
     bookXhr = $.ajax({
       url: url,
       dataType: 'html',
-      success: $.proxy(function(xhrResponse) {this._updateBookInfo(xhrResponse); }, this),
+      success: $.proxy(function(xhrResponse) {this._updateConfirmationInfo(xhrResponse); }, this),
       error: $.proxy(function(xhr) { console.log(xhr); this.model.bookNotValid(); }, this)
     });
   },
@@ -93,7 +93,7 @@ var ReservationView = Backbone.View.extend({
   },
   getUserDetails: function(model, employee_id) {
     if(!employee_id) return;
-    url = '/users/'+employee_id+'/reserve/'+model.get('isbn');
+    url = '/users/'+employee_id;
     userXhr = $.ajax({
       url: url,
       success: $.proxy(function(xhrResponse){ this._updateUserInfo(xhrResponse); }, this),
@@ -131,11 +131,11 @@ var ReservationView = Backbone.View.extend({
   },
   _updateUserInfo: function(responseText) {
     $(this.el).find(".user-info").replaceWith(responseText);
-    this.showConfirmation();
+    this.promptBookDetails();
   },
-  _updateBookInfo: function(responseText) {
-    $(this.el).find(".book-info").replaceWith(responseText);
-    this.promptUserDetails();
+  _updateConfirmationInfo: function(responseText) {
+    $(this.el).find(".confirmation-info").replaceWith(responseText);
+    this.showConfirmation();
   },
   _getElement: function(elements, cssSelector) {
     return _.find(elements, function(element) { return $(element).hasClass(cssSelector); });
