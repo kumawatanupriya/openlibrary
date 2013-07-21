@@ -14,3 +14,11 @@ gem 'mail'
 gem 'capistrano'
 gem 'sinatra-flash'
 gem 'wrest'
+
+
+group :test, :development do
+  gem 'rspec'
+  gem 'launchy'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end

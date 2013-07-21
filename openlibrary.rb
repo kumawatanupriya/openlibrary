@@ -4,10 +4,14 @@ Bundler.require
 
 require 'sinatra/content_for'
 require 'sinatra/flash'
+Dir[File.dirname(__FILE__) + "/lib/*.rb"].each { |lib| require lib }
 require './database'
 
 set :environment, :production
 set :logging, true
+set :public_folder, File.dirname(__FILE__) + '/public'
+set :views, File.dirname(__FILE__) + '/views'
+
 enable :sessions
 
 get '/' do
