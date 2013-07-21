@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-feature "Reservation", :js => true do
+feature "Reservation" do
   before do
     @book = Book.create(isbn: "9788131722428",
                 title: "The Pragmatic Programmer",
@@ -28,4 +28,8 @@ feature "Reservation", :js => true do
   after do
     [@book, @book_copy, @user].each{|m| m.destroy!}
   end
+end
+
+feature "Return" do
+
 end
