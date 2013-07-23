@@ -3,7 +3,6 @@
   <h2>You are holding the following book:</h2>
   <h3 class="title"><%= @book.title %></h3>
   <h3 class="author"><%= @book.author %></h3>
-  <h3 class="author"><%= @book.author %></h3>
   <h3>
     <% if @book_found %>
       This book has <%= @book.book_copies.size %> copies.
@@ -12,7 +11,7 @@
     <% end %>
   </h3>
   <input type="hidden" name="isbn" value="<%= @book.isbn %>"/>
-  <h3>I have <input type="number" value="1"> more copies.<input type="button" value="Add" class="btn"/></h3>
+  <h3>I have <input type="number" value="1" name="copies_to_add"> more copies.<input type="button" value="Add" class="btn"/></h3>
   <h3> Or <a href="#" id="update_book">Edit</a></h3>
   <h3> Or <a href="/donate">Add another book</a></h3>
 

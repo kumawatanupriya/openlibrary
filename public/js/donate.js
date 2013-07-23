@@ -20,7 +20,7 @@ var DonateBookView = Backbone.View.extend({
   },
 
   addCopies: function(){
-    var params = {isbn: $("input[name=isbn]").val(), copies_to_add: $("input[type=number]").val()};
+    var params = {isbn: $("input[name=isbn]").val(), copies_to_add: $("input[name=copies_to_add]").val()};
     $.post("/add_copies", params, $.proxy(this.updateBookView, this));
   },
 

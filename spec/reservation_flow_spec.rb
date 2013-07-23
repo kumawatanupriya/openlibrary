@@ -7,7 +7,7 @@ describe "Open library" do
                         title: "The Pragmatic Programmer",
                         author: "Hunt",
                         photo_remote_url: "http://bks4.books.google.co.in/books?id=kvZEJ9-Hqb0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api")
-    @book_copy = BookCopy.create(book: @book)
+    BookCopy.create(book: @book)
     @user = User.create(employee_id: 19891, first_name: "Katta", last_name: "Durai")
   end
 
