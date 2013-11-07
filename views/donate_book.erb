@@ -5,10 +5,11 @@
   <h3 class="author"><%= @book.author %></h3>
   <h3>
     <% if @book_found %>
-      This book has <%= @book.book_copies.size %> copies.
+      This book already has <%= @book.book_copies.size %> copies.
     <% else %>
-      A copy of this book has been added.
+      <h2>You just added a copy of this book.</h2>
     <% end %>
+    <h3> Do you want to add more copies?  </h3>
   </h3>
   <input type="hidden" name="isbn" value="<%= @book.isbn %>"/>
   <h3>I have <input type="number" value="1" name="copies_to_add"> more copies.<input type="button" value="Add" class="btn"/></h3>
