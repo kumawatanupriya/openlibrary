@@ -34,7 +34,7 @@ describe "Open library" do
     fill_in "ISBN", with: "#{@isbn}\n"
     expect(page).to have_content @title
     expect(page).to have_content @author
-    expect(page).to have_content "A copy of this book has been added."
+    expect(page).to have_content "You just added a copy of this book."
 
     expect(Book.all.size).to eq(1)
     book_added = Book.last
@@ -53,13 +53,13 @@ describe "Open library" do
       fill_in "ISBN", with: "#{@book.isbn}\n"
       expect(page).to have_content @book.title
       expect(page).to have_content @book.author
-      expect(page).to have_content "This book has 1 copies."
+      expect(page).to have_content "This book already has 1 copies."
     end
 
     it "should add book copy" do
       fill_in "copies_to_add", with: 3
       click_button "Add"
-      expect(page).to have_content "This book has 4 copies."
+      expect(page).to have_content "This book already has 4 copies"
     end
 
     it "should edit book" do
