@@ -101,6 +101,15 @@ get '/users/:employee_id/reserve/:isbn' do
   without_layout :reservation
 end
 
+post '/send-reminder-mail' do
+  content_type :json
+  @reservations = Reservation.all({:state => :issued.to_s, :created_on.lt => Date.today - 30})
+  @reservations.each do |reservation|
+    send_reminder_mail(reservation)
+  end
+  "Success"
+end
+
 def with_plain_layout template, options={}
   @menu_items = YAML::load(File.read(File.expand_path('config/menu.yml','.')))
   erb template, options.merge(:layout => :'layout/plain')
@@ -129,6 +138,11 @@ end
 def send_returned_msg
   email = Email.new(@user, @book)
   email.send_returned_msg
+end
+
+def send_reminder_mail(reservation)
+  email = Email.new(reservation.user, reservation.book)
+  email.send_reminder_msg(reservation.created_on)
 end
 
 def load_user_and_book

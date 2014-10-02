@@ -2,7 +2,7 @@ require 'mail'
 require 'erb'
 
 class Email
-  attr_accessor :to, :book
+  attr_accessor :to, :book, :reservation
 
   def initialize to, book
     @to = to
@@ -21,6 +21,10 @@ class Email
     send_email 'OpenLibrary Barcode', '', true
   end
 
+  def send_reminder_msg(issued_on)
+    send_email "Reminder to return the book taken on #{issued_on.strftime("%d-%b-%Y")}", 'reminder'
+  end
+
   private
 
   def get_erb_content filename
@@ -34,7 +38,7 @@ class Email
     mail_body = renderer.result(binding)
 
     mail = Mail.new do
-      from "admin@openlibrary.thoughtworks.com"
+      from "admin@noolagam.thoughtworks.com"
       to to_address
       subject mail_subject
       add_file "barcode_images/#{@to.employee_id}.png" if attachment
