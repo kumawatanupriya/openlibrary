@@ -17,9 +17,9 @@ gem 'wrest'
 
 
 group :test, :development do
-  gem 'rspec'
-  gem 'launchy'
-  gem 'capybara'
-  gem 'webmock'
-  gem 'selenium-webdriver'
+ gem 'rspec'
+ gem 'launchy'
+ gem 'capybara'
+ gem 'webmock'
+ gem 'selenium-webdriver'
 end
