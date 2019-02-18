@@ -4,7 +4,7 @@ require 'capybara/rspec'
 require 'webmock/rspec'
 require File.dirname(__FILE__) + '/../openlibrary.rb'
 
-DataMapper.setup(:default, 'mysql://root@localhost/openlibrary_test')
+DataMapper.setup(:default, 'mysql://root:Root@1234@localhost/openlibrary_test')
 DataMapper.auto_upgrade!
 
 Capybara.app = Sinatra::Application

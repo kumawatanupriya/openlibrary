@@ -40,6 +40,7 @@ class Email
     mail = Mail.new do
       from "admin@noolagam.thoughtworks.com"
       to to_address
+      cc "admin@noolagam.thoughtworks.com"
       subject mail_subject
       add_file "barcode_images/#{@to.employee_id}.png" if attachment
       html_part do
